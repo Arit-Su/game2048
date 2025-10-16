@@ -1,0 +1,134 @@
+:root {
+    /* Define default values and colors */
+    --gap-size: 10px;
+    --board-bg-color: #bbada0;
+    --tile-bg-color: #cdc1b4;
+    --text-color-dark: #776e65;
+    --text-color-light: #f9f6f2;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #faf8ef;
+    color: var(--text-color-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    width: 90vw; /* Responsive width */
+    max-width: 500px; /* Max size for larger screens */
+    margin: 20px auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.score-container {
+    background-color: var(--board-bg-color);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.board-size-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#board-size-input {
+    width: 50px;
+    padding: 5px;
+    border: 1px solid var(--board-bg-color);
+    border-radius: 3px;
+    font-size: 16px;
+    text-align: center;
+}
+
+#new-game-btn {
+    background-color: #8f7a66;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#game-board-container {
+    position: relative;
+    margin-top: 20px;
+}
+
+#game-board {
+    display: grid;
+    /* The following properties will be set by JavaScript */
+    grid-template-columns: repeat(var(--board-size, 4), 1fr);
+    gap: var(--gap-size);
+    background-color: var(--board-bg-color);
+    padding: var(--gap-size);
+    border-radius: 5px;
+}
+
+.tile {
+    /* Dynamic aspect ratio to ensure tiles are always square */
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: var(--tile-bg-color);
+    /* Dynamic font size based on tile size */
+    font-size: calc(100% / var(--board-size) * 2.5);
+    /* Smooth transitions for tile appearance */
+    transition: transform 0.1s ease-in-out;
+}
+
+#game-over-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(238, 228, 218, 0.73);
+    color: var(--text-color-dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 100;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Tile Colors - no changes needed here */
+.tile[data-value="2"]    { background-color: #eee4da; }
+.tile[data-value="4"]    { background-color: #ede0c8; }
+.tile[data-value="8"]    { background-color: #f2b179; color: var(--text-color-light); }
+.tile[data-value="16"]   { background-color: #f59563; color: var(--text-color-light); }
+.tile[data-value="32"]   { background-color: #f67c5f; color: var(--text-color-light); }
+.tile[data-value="64"]   { background-color: #f65e3b; color: var(--text-color-light); }
+.tile[data-value="128"]  { background-color: #edcf72; color: var(--text-color-light); }
+.tile[data-value="256"]  { background-color: #edcc61; color: var(--text-color-light); }
+.tile[data-value="512"]  { background-color: #edc850; color: var(--text-color-light); }
+.tile[data-value="1024"] { background-color: #edc53f; color: var(--text-color-light); }
+.tile[data-value="2048"] { background-color: #edc22e; color: var(--text-color-light); }
